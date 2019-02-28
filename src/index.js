@@ -1,15 +1,18 @@
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/App';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
+import { put, takeEvery } from 'redux-saga/effects';
 import logger from 'redux-logger';
 
 function* rootSaga() {
     // yield takeEvery('FETCH_FRUITS', fruitFetcher);
     // yield takeEvery('POST_FRUITS', PostfruitFetcher);
     yield takeEvery('GET_KOALAS', fetchKoalas);
+    yield takeEvery('ADD_KOALA', addKoala);
 }
 
 //Fetch Koal Saga
@@ -21,7 +24,16 @@ function* fetchKoalas() {
 //End Fetch
 
 //Post Koal Saga
-
+function* addKoala(action) {
+    try {
+        yield axios.post('/api/koala', action.payload);
+        // yield put({ type: 'FETCH_KOALAS' });
+    } catch (error) {
+        const errorMessage = `Unable to add koala. Error in addKoala saga. ${error}`;
+        alert(errorMessage);
+        console.log(errorMessage);
+    }
+}
 //End Post
 
 //Put Koal Saga

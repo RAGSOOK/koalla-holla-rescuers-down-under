@@ -34,7 +34,15 @@ router.get('/', (req, res) => {
 });
 
 // POST route
-
+router.post('/', (req, res) => {
+    Koala.create(req.body).then((response) => {
+        res.sendStatus(201);
+    }).catch((error) => {
+        const errorMessage = `Error in route POST /api/koala. ${error}`;
+        console.log(errorMessage);
+        res.sendStatus(500);
+    })
+});
 
 // PUT route
 
