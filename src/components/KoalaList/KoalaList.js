@@ -14,8 +14,7 @@ class KoalaList extends Component{
         );
 
         return (
-            <div>
-            <div>{JSON.stringify(this.props.reduxStore)}</div>
+           
             <Table>
                 <TableHead>
                     <TableRow>
@@ -23,6 +22,7 @@ class KoalaList extends Component{
                         <TableCell>Gender</TableCell>
                         <TableCell>Age</TableCell>
                         <TableCell>Ready To Transfer</TableCell>
+                        <TableCell></TableCell>
                         <TableCell>Notes</TableCell>
                     </TableRow>
                 </TableHead>
@@ -30,7 +30,7 @@ class KoalaList extends Component{
                         {koalaTable}
                 </TableBody>
             </Table>
-            </div>
+          
         )
     }
 }
