@@ -18,9 +18,9 @@ function* rootSaga() {
 //Fetch Koal Saga
 function* fetchKoalas() {
     try{
-        const koalas = axios.get('/api/koala');
+        const koalas = yield axios.get('/api/koala');
         console.log(koalas);  
-        yield put({type: 'SET_KOALAS', payload: koalas});
+        yield put({type: 'SET_KOALAS', payload: koalas.data});
     }catch(error){
         alert('something went wrong');
         yield console.log('error in fetchKoalas', error);   
