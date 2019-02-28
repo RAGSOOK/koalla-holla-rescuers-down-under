@@ -9,10 +9,15 @@ import logger from 'redux-logger';
 function* rootSaga() {
     // yield takeEvery('FETCH_FRUITS', fruitFetcher);
     // yield takeEvery('POST_FRUITS', PostfruitFetcher);
+    yield takeEvery('GET_KOALAS', fetchKoalas);
 }
 
 //Fetch Koal Saga
-
+function* fetchKoalas() {
+    try{
+        const koalas = axios.get
+    }
+}
 //End Fetch
 
 //Post Koal Saga
