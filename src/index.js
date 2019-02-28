@@ -32,7 +32,7 @@ function* fetchKoalas() {
 function* addKoala(action) {
     try {
         yield axios.post('/api/koala', action.payload);
-        // yield put({ type: 'FETCH_KOALAS' });
+        yield put({ type: 'GET_KOALAS' });
     } catch (error) {
         const errorMessage = `Unable to add koala. Error in addKoala saga. ${error}`;
         alert(errorMessage);
