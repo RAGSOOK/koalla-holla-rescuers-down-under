@@ -11,6 +11,7 @@ import logger from 'redux-logger';
 function* rootSaga() {
     // yield takeEvery('FETCH_FRUITS', fruitFetcher);
     yield takeEvery('ADD_KOALA', addKoala);
+    yield takeEvery('PREPARE_KOALA', prepareKoala);
 }
 
 //Fetch Koal Saga
@@ -29,7 +30,16 @@ function* addKoala(action) {
     }
 }
 //End Post
-
+function* prepareKoala(action) {
+    try {
+        yield axios.put(`/api/koala/${action.payload._id}`);
+        // yield put({ type: 'FETCH_KOALAS' });
+    } catch (error) {
+        const errorMessage = `Unable to prepare koala. Error in prepareKoala saga. ${error}`;
+        alert(errorMessage);
+        console.log(errorMessage);
+    }
+}
 //Put Koal Saga
 
 //End Put
