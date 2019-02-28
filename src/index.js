@@ -10,19 +10,30 @@ import logger from 'redux-logger';
 
 function* rootSaga() {
     // yield takeEvery('FETCH_FRUITS', fruitFetcher);
+    // yield takeEvery('POST_FRUITS', PostfruitFetcher);
+    yield takeEvery('GET_KOALAS', fetchKoalas);
     yield takeEvery('ADD_KOALA', addKoala);
     yield takeEvery('PREPARE_KOALA', prepareKoala);
 }
 
 //Fetch Koal Saga
-
+function* fetchKoalas() {
+    try{
+        const koalas = yield axios.get('/api/koala');
+        console.log(koalas);  
+        yield put({type: 'SET_KOALAS', payload: koalas.data});
+    }catch(error){
+        alert('something went wrong');
+        yield console.log('error in fetchKoalas', error);   
+    }
+}
 //End Fetch
 
 //Post Koal Saga
 function* addKoala(action) {
     try {
         yield axios.post('/api/koala', action.payload);
-        // yield put({ type: 'FETCH_KOALAS' });
+        yield put({ type: 'GET_KOALAS' });
     } catch (error) {
         const errorMessage = `Unable to add koala. Error in addKoala saga. ${error}`;
         alert(errorMessage);
@@ -49,7 +60,14 @@ function* prepareKoala(action) {
 //End Delete
 
 //Koal that exist Reducer
-
+const setKoalas = (state = {}, action) => {
+    switch(action.type) {
+        case 'SET_KOALAS':
+            return action.payload;
+        default: 
+            return state;
+    }
+}
 // End Reducer
     
 const sagaMiddleware = createSagaMiddleware();
@@ -57,7 +75,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
-        // basketReducer,
+        setKoalas
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
