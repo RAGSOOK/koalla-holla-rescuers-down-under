@@ -41,6 +41,8 @@ function* addKoala(action) {
     }
 }
 //End Post
+
+//Put Koal Saga
 function* prepareKoala(action) {
     try {
         yield axios.put(`/api/koala/${action.payload._id}`);
@@ -51,8 +53,6 @@ function* prepareKoala(action) {
         console.log(errorMessage);
     }
 }
-//Put Koal Saga
-
 //End Put
 
 //Delete Koal Saga
@@ -60,7 +60,7 @@ function* prepareKoala(action) {
 //End Delete
 
 //Koal that exist Reducer
-const setKoalas = (state = {}, action) => {
+const setKoalas = (state = [], action) => {
     switch(action.type) {
         case 'SET_KOALAS':
             return action.payload;

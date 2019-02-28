@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { Table, TableBody, TableCell, TableHead, TableRow, } from '@material-ui/core';
+import KoalaTableDetail from "./KoalaTableDetail";
 
 class KoalaList extends Component{
     componentDidMount(){
@@ -7,8 +9,28 @@ class KoalaList extends Component{
     }
 
     render(){
+        let koalaTable = this.props.reduxStore.setKoalas.map(koala  =>
+            <KoalaTableDetail koala={koala} key={koala._id} />
+        );
+
         return (
+            <div>
             <div>{JSON.stringify(this.props.reduxStore)}</div>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Gender</TableCell>
+                        <TableCell>Age</TableCell>
+                        <TableCell>Ready To Transfer</TableCell>
+                        <TableCell>Notes</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                        {koalaTable}
+                </TableBody>
+            </Table>
+            </div>
         )
     }
 }
