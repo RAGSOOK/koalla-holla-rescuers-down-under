@@ -23,7 +23,6 @@ class KoalaList extends Component{
                         <TableCell>Gender</TableCell>
                         <TableCell>Age</TableCell>
                         <TableCell>Ready To Transfer</TableCell>
-                        <TableCell></TableCell>
                         <TableCell>Notes</TableCell>
                         <TableCell>Delete</TableCell>
                     </TableRow>
