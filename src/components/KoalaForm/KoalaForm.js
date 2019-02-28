@@ -24,8 +24,11 @@ class KoalaForm extends Component {
     // Runs when the form's submit 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in submit');
-        console.log(this.state);
+        const action = {
+            type: 'ADD_KOALA',
+            payload: this.state
+        };
+        this.props.dispatch(action);
     }
 
     // Display this component on the DOM

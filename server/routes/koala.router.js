@@ -20,7 +20,10 @@ router.get('/', (req, res) => {
 });
 
 // POST route
-
+router.post('/', (req, res) => {
+    // REPLACE THIS with mongoose find
+    
+});
 
 // PUT route
 
