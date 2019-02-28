@@ -18,7 +18,12 @@ function* rootSaga() {
 //Fetch Koal Saga
 function* fetchKoalas() {
     try{
-        const koalas = axios.get
+        const koalas = axios.get('/api/koala');
+        console.log(koalas);  
+        yield put({type: 'SET_KOALAS', payload: koalas});
+    }catch(error){
+        alert('something went wrong');
+        yield console.log('error in fetchKoalas', error);   
     }
 }
 //End Fetch
