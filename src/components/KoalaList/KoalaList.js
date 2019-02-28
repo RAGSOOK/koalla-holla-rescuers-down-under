@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Table, TableBody, TableCell, TableHead, TableRow, } from '@material-ui/core';
 import KoalaTableDetail from "./KoalaTableDetail";
 
+
 class KoalaList extends Component{
     componentDidMount(){
         this.props.dispatch({type: 'GET_KOALAS'});
@@ -24,6 +25,7 @@ class KoalaList extends Component{
                         <TableCell>Ready To Transfer</TableCell>
                         <TableCell></TableCell>
                         <TableCell>Notes</TableCell>
+                        <TableCell>Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
