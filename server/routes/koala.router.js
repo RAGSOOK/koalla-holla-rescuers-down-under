@@ -45,7 +45,15 @@ router.post('/', (req, res) => {
 });
 
 // PUT route
-
+router.put('/:id', (req, res) => {
+    Koala.findOneAndUpdate({ _id: req.params.id }, {ready_to_transfer: true}).then((response) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        const errorMessage = `Error in route PUT /api/koala. ${error}`;
+        console.log(errorMessage);
+        res.sendStatus(500);
+    })
+});
 
 // DELETE route
 
