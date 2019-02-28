@@ -9,11 +9,10 @@ import { put, takeEvery } from 'redux-saga/effects';
 import logger from 'redux-logger';
 
 function* rootSaga() {
-    // yield takeEvery('FETCH_FRUITS', fruitFetcher);
-    // yield takeEvery('POST_FRUITS', PostfruitFetcher);
     yield takeEvery('GET_KOALAS', fetchKoalas);
     yield takeEvery('ADD_KOALA', addKoala);
     yield takeEvery('PREPARE_KOALA', prepareKoala);
+    yield takeEvery('DELETE_KOALA', deleteKoala);
 }
 
 //Fetch Koal Saga
@@ -41,22 +40,31 @@ function* addKoala(action) {
     }
 }
 //End Post
+
+//Put Koal Saga
 function* prepareKoala(action) {
     try {
         yield axios.put(`/api/koala/${action.payload._id}`);
-        // yield put({ type: 'FETCH_KOALAS' });
+        yield put({ type: 'GET_KOALAS' });
     } catch (error) {
         const errorMessage = `Unable to prepare koala. Error in prepareKoala saga. ${error}`;
         alert(errorMessage);
         console.log(errorMessage);
     }
 }
-//Put Koal Saga
-
 //End Put
 
 //Delete Koal Saga
-
+function* deleteKoala(action) {
+    try {
+        yield axios.delete(`/api/koala/${action.payload._id}`);
+        yield put({ type: 'GET_KOALAS' });
+    } catch (error) {
+        const errorMessage = `Unable to delete koala. Error in deleteKoala saga. ${error}`;
+        alert(errorMessage);
+        console.log(errorMessage);
+    }
+}
 //End Delete
 
 //Koal that exist Reducer
