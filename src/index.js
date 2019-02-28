@@ -68,6 +68,7 @@ function* deleteKoala(action) {
     }
 }
 //End Delete
+
     
 const sagaMiddleware = createSagaMiddleware();
 
