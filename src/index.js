@@ -8,6 +8,8 @@ import createSagaMiddleware from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 import logger from 'redux-logger';
 
+import rootReducer from '../src/redux/reducers/';
+
 function* rootSaga() {
     // yield takeEvery('FETCH_FRUITS', fruitFetcher);
     // yield takeEvery('POST_FRUITS', PostfruitFetcher);
@@ -58,26 +60,13 @@ function* prepareKoala(action) {
 //Delete Koal Saga
 
 //End Delete
-
-//Koal that exist Reducer
-const setKoalas = (state = {}, action) => {
-    switch(action.type) {
-        case 'SET_KOALAS':
-            return action.payload;
-        default: 
-            return state;
-    }
-}
-// End Reducer
     
 const sagaMiddleware = createSagaMiddleware();
 
 // Create one store that all components can use
 const storeInstance = createStore(
-    combineReducers({
-        setKoalas
-    }),
     // Add sagaMiddleware to our store
+    rootReducer,
     applyMiddleware(sagaMiddleware, logger),
 );
 
