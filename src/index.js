@@ -50,7 +50,14 @@ function* addKoala(action) {
 //End Delete
 
 //Koal that exist Reducer
-
+cont setKoalas = (state = {}, action) => {
+    switch(action.type) {
+        case 'SET_KOALAS':
+            return action.payload;
+        default: 
+            return state;
+    }
+}
 // End Reducer
     
 const sagaMiddleware = createSagaMiddleware();
@@ -58,7 +65,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
-        // basketReducer,
+        setKoalas
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
