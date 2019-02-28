@@ -56,6 +56,14 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE route
-
+router.delete('/:id', (req, res) => {
+    Koala.findOneAndRemove({ _id: req.params.id }).then((response) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        const errorMessage = `Error in route DELETE /api/koala. ${error}`;
+        console.log(errorMessage);
+        res.sendStatus(500);
+    })
+});
 
 module.exports = router;
