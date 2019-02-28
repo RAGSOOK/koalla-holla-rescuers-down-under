@@ -50,7 +50,7 @@ function* addKoala(action) {
 //End Delete
 
 //Koal that exist Reducer
-cont setKoalas = (state = {}, action) => {
+const setKoalas = (state = {}, action) => {
     switch(action.type) {
         case 'SET_KOALAS':
             return action.payload;
